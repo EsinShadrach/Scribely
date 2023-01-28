@@ -1,0 +1,51 @@
+{% extends 'unauth.html' %}
+{% block content %}
+{% load static %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="text-center mt-2 has-text-danger label">
+        {{message}}
+    </div>
+    {% endfor %}
+{% endif %}
+        <main class="container-md my-4">
+            <div class="d-flex justify-content-center">
+                <section class="mt-5 container-md justify-content-center login-card row">
+                    <div class="col-md-6">
+                        <form action="" method="post" class="card border-0">
+                            {% csrf_token %}
+                            <div class="card-header border-0 has-background-primary" style="box-shadow: none;">
+                                <h4 class="text-light text-center w-100 border-0">
+                                    Login
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 text-center">
+                                    <img src="{% static 'profile_img.jpg' %}" class="profile_img" alt="">
+                                </div>
+                                <div action="">
+                                    <div class="mb-3">
+                                      <label for="email" class="label text-muted">Email</label>
+                                      <input type="email"
+                                        class="py-2 form-control modal_input_username" name="email" id="mail" aria-describedby="mail" placeholder="e.g. Johndoe@mail.com">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="Password" class="label text-muted">Password</label>
+                                        <input type="password" class="py-2 form-control modal_input_username" name="password" id="password" aria-describedby="password" placeholder="password">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-none">
+                                <div class="w-100 signup_link">
+                                    <button class="button w-100 is-primary" type="submit">Login</button>
+                                    <div class="text-center text-muted mt-3">
+                                        Don't have an account? sign up <a href="{% url 'register' %}">here</a>.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+{% endblock %}

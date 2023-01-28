@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scribely</title>
+        <link rel="shortcut icon" href="{% static 'log2.png' %}" />
+        <link rel="stylesheet" href="{% static 'icons/bootstrap-icons.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bulma.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<script defer src="{% static 'js/bootstrap.bundle.js' %}"></script>
+        <script defer src="{% static 'js/app.js' %}"></script>
+	</head>
+	<body>
+        <header>
+            <nav class="p-2 has-background-primary-light">
+                <div class="container-md header_nav">
+                    <form class="d-flex gap-3 my-2 my-lg-0">
+                        <a class="d-flex gap-2 text-decoration-none" style="justify-content: center; align-items: center;">
+                            <h5>
+                                Scribely
+                            </h5>
+                        </a>
+                        <img src="{% static 'profile_img.jpg' %}" class="profile_img" alt="">
+                    </form>
+                </div>
+            </nav>
+        </header>
+        {% block content %}
+        {% endblock%}
+    </body>
+</html>
+        

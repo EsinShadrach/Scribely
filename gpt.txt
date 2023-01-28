@@ -1,0 +1,1 @@
+[2023-01-24 04:21:08.786996] - couldn't open "oai.png": no such file or directory.

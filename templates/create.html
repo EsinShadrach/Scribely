@@ -1,0 +1,48 @@
+{% extends 'auth.html' %}
+{% block content %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="text-center mt-2 has-text-danger label">
+        {{message}}
+    </div>
+    {% endfor %}
+{% endif %}
+        <main class="container-md my-4">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="">
+                    <label for="" class="label has-text-primary">*Note Name</label>
+                    {% if messages %}
+                        <input name="note_name" type="text" class="input_err note_name label has-text-primary input is-primary">
+                    {% else %}
+                        <input name="note_name" type="text" class="note_name label has-text-primary input is-primary">                
+                    {% endif %}
+                </div>
+                <div class="row my-4 gy-3">
+                    <div class="col-md-4">
+                        <label for="" class="label has-text-link">Tag-1</label>
+                        <input name="tag_1" type="text" class="input tag_1 has-text-primary is-warning label" placeholder="Tag">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" class="label has-text-link">Tag-2</label>
+                        <input name="tag_2" type="text" class="input tag_2 has-text-primary is-primary label" placeholder="Tag">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="" class="label has-text-link">Tag-3</label>
+                        <input name="tag_3" type="text" class="input tag_3 has-text-primary is-danger label" placeholder="Tag">
+                    </div>
+                </div>
+                <div>
+                    <textarea class="text_update rounded p-3 label has-text-primary" rows="10" placeholder="Write Note.." name="note_content"></textarea>
+                </div>
+                <div class="row mt-2 g-3">
+                    <div class="col-md-6">
+                        <button class="button w-100 is-primary" type="submit">Submit</button>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{request.HTTP}}" class="text-decoration-none button w-100 is-link">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </main>
+{% endblock %}

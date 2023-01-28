@@ -1,0 +1,30 @@
+in jquery
+
+You can use the window.history.back() method to go back to the previous page in jQuery.
+[2023-01-24 04:19:22.997778] - couldn't open "oai.png": no such file or directory.
+You can go back to the referral view in Django by using the reverse() function. This function takes a view name, and optionally some positional and keyword arguments, and returns a URL that will point to that view. For example, if you have a view named 'referral_view', you can use the following code to go back to it:
+
+url = reverse('referral_view')
+
+You can also pass arguments to the view, like so:
+
+url = reverse('referral_view', args=(arg1, arg2))
+
+or
+
+url = reverse('referral_view', kwargs={'key1': val1, 'key2': val2})
+
+Once you have the URL, you can use the Django redirect() function to redirect the user to the view.
+[2023-01-24 04:19:54.604379] - couldn't open "oai.png": no such file or directory.
+You can use the {% url 'name-of-view' %} syntax to go back to a particular view in Django. For example, if you want to go back to the referral view, you can use: 
+
+{% url 'referral' %}
+[2023-01-24 04:20:41.376966] - couldn't open "oai.png": no such file or directory.
+You can use the {% url %} tag to go back to the previous page in a Django template. The syntax is as follows:
+
+{% url 'name_of_previous_page' %}
+
+For example, if you wanted to go back to the home page, you could use the following code:
+
+{% url 'home' %}
+[2023-01-24 04:21:08.786996] - couldn't open "oai.png": no such file or directory.

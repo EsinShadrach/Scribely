@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Scribely</title>
+        <link rel="shortcut icon" href="{% static 'log2.ico' %}" />
+        <link rel="stylesheet" href="{% static 'icons/bootstrap-icons.css' %}">
+		<link rel="stylesheet" href="{% static 'css/bulma.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+		<script defer src="{% static 'js/bootstrap.bundle.js' %}"></script>
+        <script defer src="{% static 'js/app.js' %}"></script>
+	</head>
+	<body>
+        <header>
+            <nav class="p-2 has-background-primary-light">
+                <div class="container-md header_nav">
+                    <form action="{% url 'home' %}" class="d-flex gap-3 my-2 my-lg-0">
+                        <a href="" class="d-flex gap-2 text-decoration-none" style="justify-content: center; align-items: center;"  data-bs-toggle="modal" data-bs-target="#userUpdate">
+                            {% if request.user.avatar == 'profile_img.jpg' or request.user.is_authenticated == False %}
+                                <img src="{% static 'profile_img.jpg' %}" class="profile_img" alt="">
+                                <div>
+                                    @{{request.user.username}}
+                                </div>
+                            {% else %}
+                                <img src="{{request.user.avatar.url}}" class="profile_img" alt="">
+                                <div>
+                                    @{{request.user.username}}
+                                </div>
+                            {% endif %}
+                        </a>
+                        <div class="rounded search_cont">
+                            <input class="input is-primary search" name="q" type="text" placeholder="Search">
+                            <button class="button rounded-end is-primary search-btn" type="submit">
+                                <i class="bi-search has-text-dark"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+        </header>
+        
+        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+        <div class="modal fade" id="userUpdate" tabindex="-1" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
+                <form enctype="multipart/form-data" method="post" action="{% url 'home' %}" class="modal-content">
+                    {% csrf_token %}
+                    <div class="modal-header has-background-primary">
+                        <h5 class="modal-title text-center w-100 text-light" id="modalTitleId">Update User</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3 text-center">
+                            {% if request.user.avatar == 'profile_img.jpg' or request.user.is_authenticated == False %}
+                                <img src="{% static 'profile_img.jpg' %}" class="profile_img" alt="">
+                                <div class="mt-1">
+                                    @{{request.user.username}}
+                                </div>
+                            {% else %}
+                                <img src="{{request.user.avatar.url}}" class="profile_img" alt="">
+                                <div class="mt-1">
+                                    @{{request.user.username}}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                          <label for="" class="px-1 form-label label text-muted">Username</label>
+                          <input value="{{request.user.username}}" type="text"
+                            class="form-control modal_input_username" name="modal_username" id="" aria-describedby="helpId" placeholder="">
+                        </div>
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="" class="px-1 form-label label text-muted">Display Image</label>
+                                <input name="image" value="" type="file" class="modal_input_username form-control" id="" placeholder="s" aria-describedby="display photo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="button w-100 is-primary" type="submit">Save</button>
+                        <a href="{% url 'logout' %}" class="text-decoration-none button w-100 is-danger" type="submit">Logout</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

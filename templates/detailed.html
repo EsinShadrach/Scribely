@@ -1,0 +1,68 @@
+{% extends 'auth.html' %}
+{% block content %}
+        <main class="container-md my-4">
+            <section class="text-white row my-3 px-3">
+                <a href="{% url 'create' %}" class="col-md-2 text-center text-decoration-none has-background-primary rounded-5 additem px-3 py-2">
+                    <span>
+                        <i class="bi-plus-circle-fill text-white p-1"></i>
+                    </span>
+                    <span class="has-text-primary-light has-text-weight-bold">
+                        Add a note
+                    </span>
+                </a>
+            </section>
+            <section class="container-md mt-5">
+                <h1 class="has-text-primary d-flex justify-content-between delete-item mb-4 mt-3">
+                    <span>{{notes}}</span>
+                    <div class="d-flex gap-3">
+                        <a href="{% url 'update-note' notes.unique_note_identity %}" class="has-text-primary">
+                            <span class="bi-pencil-square"></span>
+                        </a>
+                        <span class="bi-trash-fill has-text-danger" data-bs-toggle="modal" data-bs-target="#modalId"></span>
+                    </div>
+                </h1>
+                <!-- ========== Start modal ========== -->
+                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title has-text-danger" id="modalTitleId">Delete</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body label">
+                                permanently delete "{{notes}}"?
+                            </div>
+                            <div class="modal-footer delet_modal_foot">
+                                <div class="w-100">
+                                    <button type="button" class="w-100 btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                <div class="w-100">
+                                    <a href="{% url 'delete-note' notes.unique_note_identity %}" type="button" class="w-100 btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ========== End modal ========== -->                
+                <div>
+                    <span class="tag is-warning is-medium">
+                        <span>{{notes.tag1}}</span>
+                    </span>
+                    <span class="tag is-warning is-medium">
+                        <span>{{notes.tag2}}</span>
+                    </span>
+                    <span class="tag is-warning is-medium">
+                        <span>{{notes.tag3}}</span>
+                    </span>
+                </div>
+                <div class="mt-3">
+                    <div class="message is-primary shadow-lg">
+                        <div class="message-body label">
+                            {{notes.note}}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'unauth.html' %}
+{% load static %}
+{% block content %}
+        <main class="container-md my-4">
+            <div class="d-flex justify-content-center">
+                <section class="container-md justify-content-center login-card row">
+                    <div class="col-md-6">
+                        <form action="" enctype="multipart/form-data" method="post" class="card border-0">
+                            {% csrf_token %}
+                            <div class="card-header border-0 has-background-primary" style="box-shadow: none;">
+                                <h4 class="text-light text-center w-100 border-0">
+                                    Register
+                                </h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 text-center">
+                                    <img src="{% static 'profile_img.jpg' %}" class="profile_img" alt="">
+                                </div>
+                                <div action="">
+                                    {% for fields in form %}
+                                        <div class="mb-3 fields">
+                                            <label for="email" class="label text-muted">{{fields.label}}</label>
+                                            {{fields}}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="card-footer bg-none">
+                                <div class="w-100 signup_link">
+                                    <button class="button w-100 is-primary" type="submit">Register</button>
+                                    <div class="text-center text-muted mt-3">
+                                        Already have an account? Login <a href="{% url 'login' %}">here</a>.
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+{% endblock %}
