@@ -1,2 +1,2 @@
 # Scribely
-Live preview: https://github.com/EsinShadrach/Scribely
+Live preview: https://scribely.esinshadrach.repl.co/
